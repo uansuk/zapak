@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Instrument Sans", sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-ink: #0a2e33;
+  --color-deep: #0c3b43;
+  --color-deep2: #114850;
+  --color-deep3: #1a5a62;
+  --color-sea: #128387;
+  --color-sealight: #37a3a0;
+  --color-foam: #edf3f1;
+  --color-paper: #f7faf9;
+  --color-line: #d5e1de;
+  --color-linesoft: #e3ecea;
+  --color-mist: #5e7d7b;
+  --color-amber: #f2a93b;
+  --color-ambersoft: #f9e8c8;
+  --color-amberink: #7c5310;
+  --color-coral: #e4572e;
+  --color-coralsoft: #fadbd0;
+  --color-coralink: #9c3a1b;
+  --color-kelp: #2e7d5b;
+  --color-kelpsoft: #d8ebdf;
+  --color-kelpink: #1d5c3f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-foam);
+  color: var(--color-ink);
+  background-image:
+    radial-gradient(1100px 500px at 85% -10%, rgba(18, 131, 135, 0.1), transparent 60%),
+    radial-gradient(900px 480px at -10% 20%, rgba(242, 169, 59, 0.09), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Cg fill='none' stroke='%230c3b43' stroke-opacity='0.045' stroke-width='1.4'%3E%3Cpath d='M0 35a35 35 0 0 1 70 0 35 35 0 0 1 70 0'/%3E%3Cpath d='M-35 70a35 35 0 0 1 70 0 35 35 0 0 1 70 0 35 35 0 0 1 70 0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* deep board texture — fish scales */
+.board-deep {
+  background-color: var(--color-deep);
+  background-image:
+    radial-gradient(1200px 400px at 20% -10%, rgba(55, 163, 160, 0.22), transparent 60%),
+    radial-gradient(800px 300px at 90% 110%, rgba(242, 169, 59, 0.12), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M0 28a28 28 0 0 1 56 0'/%3E%3Cpath d='M-28 0a28 28 0 0 1 56 0M28 0a28 28 0 0 1 56 0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ticker */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 42s linear infinite;
+  width: max-content;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.72); }
+}
+.live-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise-in 0.5s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.19s; }
+.rise-4 { animation-delay: 0.26s; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s cubic-bezier(0.22, 0.9, 0.3, 1), transform 0.6s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-in {
+  animation: toast-in 0.28s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-in {
+  animation: modal-in 0.24s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+
+@keyframes flash-row {
+  0% { background-color: rgba(242, 169, 59, 0.28); }
+  100% { background-color: transparent; }
+}
+.flash-row {
+  animation: flash-row 1.6s ease-out both;
+}
+
+/* thin scrollbars for horizontal nav */
+.scroll-thin::-webkit-scrollbar { height: 0; width: 0; }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235e7d7b' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
